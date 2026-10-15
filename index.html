@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALI BOT X-1</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #050914;
+  color: white;
+  font-family: Tahoma, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  background: #0c1425;
+  border: 1px solid #123d70;
+  border-radius: 22px;
+  padding: 24px;
+  box-shadow: 0 0 35px #0066ff25;
+}
+
+.logo {
+  text-align: center;
+  font-size: 55px;
+}
+
+h1 {
+  text-align: center;
+  color: #32aaff;
+  font-size: 27px;
+  text-shadow: 0 0 15px #087bff;
+}
+
+.subtitle {
+  text-align: center;
+  color: #9bb6d8;
+  font-size: 13px;
+}
+
+.status {
+  text-align: center;
+  color: #46ffb0;
+  font-size: 12px;
+  margin: 20px 0;
+}
+
+#chat {
+  height: 280px;
+  overflow-y: auto;
+  background: #060b16;
+  border: 1px solid #1a2d49;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.message {
+  padding: 11px;
+  margin: 9px 0;
+  border-radius: 12px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.bot {
+  background: #102644;
+  border-right: 3px solid #2196ff;
+}
+
+.user {
+  background: #172b26;
+  border-right: 3px solid #29e6a0;
+}
+
+form {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+input {
+  min-width: 0;
+  flex: 1;
+  padding: 13px;
+  border-radius: 10px;
+  border: 1px solid #24466c;
+  background: #080f1d;
+  color: white;
+  font-size: 14px;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  background: #087bff;
+  color: white;
+  padding: 12px 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(.97);
+}
+
+.footer {
+  text-align: center;
+  color: #6683a8;
+  font-size: 11px;
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <div class="logo">🤖</div>
+
+  <h1>ALI BOT X-1</h1>
+
+  <div class="subtitle">
+    دستیار هوشمند اختصاصی تو
+  </div>
+
+  <div class="status">
+    ● سیستم آماده است
+  </div>
+
+  <div id="chat" aria-live="polite">
+    <div class="message bot">
+      سلام علیرضا! 👋<br>
+      من علی بات X-1 هستم! 💙<br>
+      چه کاری برات انجام بدم؟
+    </div>
+  </div>
+
+  <form id="form">
+    <input
+      id="input"
+      type="text"
+      placeholder="پیامت رو بنویس..."
+      autocomplete="off"
+      required
+    >
+    <button type="submit">ارسال</button>
+  </form>
+
+  <div class="footer">
+    ALI BOT X-1 · نسخه آزمایشی
+  </div>
+
+</div>
+
+<script>
+const form = document.getElementById("form");
+const input = document.getElementById("input");
+const chat = document.getElementById("chat");
+
+function addMessage(text, type) {
+  const message = document.createElement("div");
+  message.className = "message " + type;
+  message.textContent = text;
+  chat.appendChild(message);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const text = input.value.trim();
+  if (!text) return;
+
+  addMessage(text, "user");
+  input.value = "";
+
+  let reply = "پیامت رو دریافت کردم! 💙 نسخه هوشمند من هنوز در حال آماده‌سازیه.";
+
+  if (text.includes("سلام")) {
+    reply = "سلام داداش! 😎 خوش اومدی به ALI BOT X-1!";
+  } else if (text.includes("اسمت")) {
+    reply = "اسم من ALI BOT X-1 هست! 🤖";
+  } else if (text.includes("خوبی")) {
+    reply = "من آماده‌ام تا کمکت کنم! 💙 تو چطوری؟";
+  } else if (text.includes("سازنده")) {
+    reply = "من دستیار اختصاصی پروژه ALI BOT X-1 هستم! 🚀";
+  }
+
+  setTimeout(function() {
+    addMessage(reply, "bot");
+  }, 400);
+});
+</script>
+</body>
+</html>
