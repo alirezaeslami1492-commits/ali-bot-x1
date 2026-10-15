@@ -6,6 +6,158 @@
 <title>ALI BOT X-1</title>
 
 <style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#050914;
+  color:#eaf6ff;
+  font-family:Tahoma,Arial,sans-serif;
+}
+header{
+  text-align:center;
+  padding:22px 10px;
+  background:#071426;
+  border-bottom:2px solid #00bfff;
+  box-shadow:0 0 20px #0077ff44;
+}
+header h1{
+  color:#00c8ff;
+  margin:0 0 10px;
+  text-shadow:0 0 15px #008cff;
+}
+header p{color:#9eb8d5;font-size:13px}
+.status{color:#42ffad;font-size:13px}
+.container{
+  max-width:650px;
+  margin:20px auto;
+  padding:12px;
+}
+.panel{
+  background:#0a1425;
+  border:1px solid #153c63;
+  border-radius:16px;
+  padding:15px;
+  box-shadow:0 0 20px #007bff12;
+}
+#chat{
+  height:350px;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:15px;
+}
+.msg{
+  padding:12px;
+  border-radius:12px;
+  max-width:90%;
+  line-height:1.9;
+  overflow-wrap:anywhere;
+}
+.bot{
+  align-self:flex-start;
+  background:#10243b;
+  border-right:3px solid #00bfff;
+}
+.user{
+  align-self:flex-end;
+  background:#073b66;
+  border-right:3px solid #008cff;
+}
+.row{display:flex;gap:8px}
+input{
+  flex:1;
+  min-width:0;
+  background:#050b16;
+  color:white;
+  border:1px solid #17639c;
+  border-radius:10px;
+  padding:13px;
+  font-size:15px;
+  outline:none;
+}
+button{
+  border:0;
+  border-radius:10px;
+  padding:12px;
+  background:#008cff;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:active{transform:scale(.97)}
+.tools{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  margin-top:13px;
+}
+.tools button{
+  background:#10243b;
+  border:1px solid #087dbb;
+}
+.tools button:hover{background:#07538a}
+#clock{
+  text-align:center;
+  color:#00c8ff;
+  padding:15px;
+  font-size:20px;
+}
+footer{
+  text-align:center;
+  color:#6e8eac;
+  font-size:12px;
+  padding:18px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>⚡ ALI BOT X-1 ⚡</h1>
+  <p>دستیار دیجیتال اختصاصی علیرضا</p>
+  <div class="status">● سیستم آنلاین است</div>
+</header>
+
+<div class="container">
+  <div id="clock">--:--:--</div>
+
+  <div class="panel">
+    <div id="chat">
+      <div class="msg bot">
+        سلام قهرمان! 🤖💙<br>
+        من ALI BOT X-1 هستم!<br>
+        اسمت چیه؟ یا یکی از دکمه‌های پایین رو امتحان کن!
+      </div>
+    </div>
+
+    <div class="row">
+      <input id="input" placeholder="پیامت رو بنویس..." autocomplete="off">
+      <button id="send">ارسال 🚀</button>
+    </div>
+
+    <div class="tools">
+      <button onclick="quick('سلام')">👋 سلام</button>
+      <button onclick="quick('جوک بگو')">😂 جوک</button>
+      <button onclick="quick('بازی')">🎮 بازی حدس عدد</button>
+      <button onclick="quick('راهنما')">📚 راهنما</button>
+      <button onclick="quick('ساعت')">🕒 ساعت</button>
+      <button onclick="quick('حالت چطوره')">🤖 وضعیت بات</button>
+      <button onclick="quick('اسم من علیرضا است')">👤 معرفی من</button>
+      <button onclick="clearChat()">🧹 پاک کردن چت</button>
+    </div>
+  </div>
+</div>
+
+<footer>ALI BOT X-1 • ساخته‌شده برای سرگرمی 💙</footer<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALI BOT X-1</title>
+
+<style>
 * {
   box-sizing: border-box;
 }
