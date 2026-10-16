@@ -1,180 +1,689 @@
-<!DOCTYPE html><html lang="fa" dir="rtl">
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALI BOT X-1 ULTRA</title>
+<title>ALI BOT X-1 LEGEND</title>
 <style>
+:root{
+  --bg:#050816;
+  --card:#0b1429;
+  --accent:#00d9ff;
+  --text:#effaff;
+  --muted:#94b6d2;
+  --border:#17496b;
+}
 *{box-sizing:border-box}
-body{margin:0;background:#050816;color:#eaf7ff;font-family:Tahoma,Arial,sans-serif;min-height:100vh}
-header{text-align:center;padding:24px 12px;background:linear-gradient(135deg,#071b3d,#080b18);border-bottom:2px solid #00c8ff;box-shadow:0 0 24px #00aaff55}
-.logo{font-size:27px;font-weight:bold;color:#36dcff;text-shadow:0 0 15px #00bfff}
-.subtitle{color:#a7c9e9;margin-top:8px;font-size:13px}
-.container{width:min(950px,94%);margin:20px auto}
-.panel{background:#0b1327;border:1px solid #17476b;border-radius:18px;padding:16px;margin-bottom:16px;box-shadow:0 0 20px #0077ff12}
-h2{font-size:17px;color:#41dfff;margin-top:0}
-button{border:1px solid #12bff5;background:linear-gradient(135deg,#07518a,#06315c);color:white;padding:11px 14px;border-radius:11px;font-weight:bold;cursor:pointer;margin:4px}
-button:active{transform:scale(.97)}
-input{width:100%;padding:13px;border-radius:10px;border:1px solid #1b75a5;background:#050b19;color:white;font-size:15px;outline:none;margin:6px 0}
-#messages{height:290px;overflow-y:auto;background:#050a17;border-radius:12px;padding:12px;border:1px solid #163957}
-.msg{padding:10px 12px;border-radius:12px;margin:8px 0;max-width:92%;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8}
-.bot{background:#102747;border-right:3px solid #00d4ff}
-.user{background:#123c37;border-right:3px solid #29e6a1;margin-right:auto}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Tahoma,Arial,sans-serif;
+  transition:background .3s,color .3s;
+}
+header{
+  text-align:center;
+  padding:25px 12px;
+  background:linear-gradient(135deg,#071b3d,#080b18);
+  border-bottom:2px solid var(--accent);
+  box-shadow:0 0 25px #00bfff30;
+}
+.logo{
+  font-size:25px;
+  font-weight:bold;
+  color:var(--accent);
+  text-shadow:0 0 15px var(--accent);
+}
+.subtitle{font-size:12px;color:var(--muted);margin-top:9px}
+.container{width:min(950px,94%);margin:18px auto}
+.panel{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:16px;
+  margin-bottom:15px;
+  box-shadow:0 0 20px #008cff10;
+}
+h2{font-size:17px;color:var(--accent);margin-top:0}
+button{
+  background:linear-gradient(135deg,#07518a,#06315c);
+  border:1px solid var(--accent);
+  color:white;
+  border-radius:11px;
+  padding:11px 13px;
+  margin:4px;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:active{transform:scale(.96)}
+input{
+  width:100%;
+  background:#050b19;
+  color:white;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:13px;
+  margin:5px 0;
+  font-size:15px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(125px,1fr));
+  gap:7px;
+}
+.small{font-size:12px;color:var(--muted);line-height:1.9}
+.robot-area{text-align:center;padding:10px}
+.robot{
+  display:inline-block;
+  font-size:70px;
+  filter:drop-shadow(0 0 15px var(--accent));
+  animation:float 2s ease-in-out infinite;
+}
+.robot.talk{animation:talk .25s infinite alternate}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+@keyframes talk{
+  from{transform:scale(1)}
+  to{transform:scale(1.08)}
+}
+#messages{
+  height:270px;
+  overflow-y:auto;
+  background:#050a17;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px;
+}
+.msg{
+  padding:10px;
+  border-radius:11px;
+  margin:8px 0;
+  line-height:1.9;
+  overflow-wrap:anywhere;
+  white-space:pre-wrap;
+}
+.bot{background:#102747;border-right:3px solid var(--accent)}
+.user{background:#123c37;border-right:3px solid #29e6a1}
 .row{display:flex;gap:6px;align-items:center}
 .row input{flex:1;min-width:0}
-.small{font-size:12px;color:#91afcb;line-height:1.8}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:8px}
-#status{color:#5de4ff;font-size:12px}
-footer{text-align:center;color:#6387a8;padding:20px;font-size:12px}
+#gameBoard{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(65px,90px));
+  gap:7px;
+  justify-content:center;
+  margin:15px auto;
+}
+.cell{
+  height:75px;
+  font-size:30px;
+  margin:0;
+  background:#07182d;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  text-align:center;
+}
+.stat{
+  background:#07182d;
+  border:1px solid var(--border);
+  padding:12px 5px;
+  border-radius:12px;
+}
+.stat strong{display:block;color:var(--accent);font-size:22px;margin-top:7px}
+footer{text-align:center;color:var(--muted);padding:20px;font-size:12px}
 </style>
 </head>
 <body>
+
 <header>
-  <div class="logo">⚡ ALI BOT X-1 ULTRA ⚡</div>
-  <div class="subtitle">ربات گیمینگ اختصاصی علیرضا | نسخه ارتقایافته</div>
-</header><div class="container">
-  <section class="panel">
-    <h2>🤖 مشخصات ربات</h2>
-    <div id="welcome">سلام! به ALI BOT X-1 خوش اومدی!</div>
-    <div class="row">
-      <input id="name" placeholder="اسمت رو وارد کن">
-      <button onclick="saveName()">ثبت اسم</button>
-    </div>
-    <div class="small">اسمت روی همین دستگاه ذخیره می‌شه. برای تغییرش، اسم جدید وارد کن.</div>
-  </section>  <section class="panel">
-    <h2>💬 گفت‌وگو با ربات</h2>
-    <div id="messages" aria-live="polite"></div>
-    <div class="row">
-      <input id="userInput" placeholder="پیامت رو بنویس..." onkeydown="if(event.key==='Enter')sendMessage()">
-      <button onclick="sendMessage()">ارسال</button>
-    </div>
-    <div class="grid">
-      <button onclick="startMic()">🎤 صحبت با میکروفون</button>
-      <button onclick="toggleVoice()" id="voiceBtn">🔊 صدای ربات: روشن</button>
-      <button onclick="clearChat()">🧹 پاک کردن چت</button>
-    </div>
-    <div id="status">آماده‌ام!</div>
-    <p class="small">برای میکروفون، ممکنه لازم باشه اجازه بدی و سایت در مرورگر پشتیبانی‌شده باز بشه. صدای مردونه به صداهای گوشی بستگی داره.</p>
-  </section>  <section class="panel">
-    <h2>🎮 بازی‌ها</h2>
-    <div class="grid">
-      <button onclick="rps()">✊ سنگ، کاغذ، قیچی</button>
-      <button onclick="guessGame()">🔢 حدس عدد</button>
-      <button onclick="riddle()">🧠 چیستان</button>
-    </div>
-    <div id="game" class="small">یک بازی انتخاب کن!</div>
-    <div id="guessArea" style="display:none">
-      <input id="guessInput" type="number" min="1" max="20" placeholder="عدد بین ۱ تا ۲۰">
-      <button onclick="checkGuess()">بررسی حدس</button>
-    </div>
-  </section>  <section class="panel">
-    <h2>✨ امکانات سریع</h2>
-    <div class="grid">
-      <button onclick="tellJoke()">😂 جوک بگو</button>
-      <button onclick="showTime()">🕒 ساعت</button>
-      <button onclick="help()">❔ راهنما</button>
-    </div>
-  </section>
+  <div class="logo">⚡ ALI BOT X-1 ⚡</div>
+  <div class="subtitle">LEGEND EDITION | ربات گیمینگ اختصاصی</div>
+</header>
+
+<div class="container">
+
+<section class="panel robot-area">
+  <div class="robot" id="robot">🤖</div>
+  <h2>ALI BOT X-1 LEGEND</h2>
+  <div id="robotStatus">سیستم آنلاین است! ⚡</div>
+</section>
+
+<section class="panel">
+  <h2>👤 پروفایل بازیکن</h2>
+  <div id="welcome">خوش اومدی!</div>
+  <div class="row">
+    <input id="nameInput" placeholder="اسمت رو بنویس">
+    <button onclick="saveName()">ثبت اسم</button>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>💬 چت با ربات</h2>
+  <div id="messages"></div>
+  <div class="row">
+    <input id="userInput" placeholder="پیامت رو بنویس..." onkeydown="if(event.key==='Enter')sendMessage()">
+    <button onclick="sendMessage()">ارسال</button>
+  </div>
+  <div class="grid">
+    <button onclick="startMic()">🎤 میکروفون</button>
+    <button onclick="toggleVoice()" id="voiceButton">🔊 صدا روشن</button>
+    <button onclick="clearChat()">🧹 پاک کردن چت</button>
+  </div>
+  <div class="small" id="voiceStatus">آماده‌ام!</div>
+</section>
+
+<section class="panel">
+  <h2>🏆 امتیازهای من</h2>
+  <div class="stats">
+    <div class="stat">امتیاز<strong id="score">0</strong></div>
+    <div class="stat">برد<strong id="wins">0</strong></div>
+    <div class="stat">رکورد<strong id="record">0</strong></div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>🎮 بازی دوز با ربات</h2>
+  <p class="small">تو با ❌ بازی می‌کنی و ربات با ⭕. سه خانه پشت سر هم رو کامل کن تا برنده بشی!</p>
+  <div id="gameBoard"></div>
+  <div id="gameStatus" class="small">نوبت توئه!</div>
+  <div style="text-align:center">
+    <button onclick="newGame()">🔄 بازی جدید</button>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>🎨 انتخاب تم</h2>
+  <div class="grid">
+    <button onclick="setTheme('blue')">🔵 آبی نئونی</button>
+    <button onclick="setTheme('purple')">🟣 بنفش سایبری</button>
+    <button onclick="setTheme('red')">🔴 قرمز آتشین</button>
+    <button onclick="setTheme('green')">🟢 سبز ماتریکسی</button>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>✨ امکانات سریع</h2>
+  <div class="grid">
+    <button onclick="tellJoke()">😂 جوک</button>
+    <button onclick="showTime()">🕒 ساعت</button>
+    <button onclick="showRiddle()">🧠 چیستان</button>
+    <button onclick="showHelp()">❔ راهنما</button>
+  </div>
+</section>
+
 </div>
-<footer>ALI BOT X-1 ULTRA · ساخته‌شده با 💙</footer><script>
-let userName=localStorage.getItem('aliBotName')||'دوست من';
-let voiceOn=true, secretNumber=0;
-const messages=document.getElementById('messages');
-const input=document.getElementById('userInput');
-const statusEl=document.getElementById('status');
 
-document.getElementById('name').value=localStorage.getItem('aliBotName')||'';
-updateWelcome();
-addMessage('bot','سلام '+userName+'! 🤖 من ALI BOT X-1 هستم. می‌تونی باهام چت کنی یا بازی کنی.');
+<footer>ALI BOT X-1 LEGEND EDITION · ساخته‌شده با 💙</footer><script>
+const $ = id => document.getElementById(id);
 
-function saveName(){
- const n=document.getElementById('name').value.trim();
- if(!n){alert('اول اسمت رو بنویس!');return}
- userName=n;localStorage.setItem('aliBotName',n);updateWelcome();
- addMessage('bot','خوش اومدی '+userName+'! 💙');speak('خوش اومدی '+userName);
-}
-function updateWelcome(){document.getElementById('welcome').textContent='سلام '+userName+'! آماده‌ای؟'}
-function addMessage(type,text){
- const d=document.createElement('div');d.className='msg '+type;d.textContent=(type==='bot'?'🤖 ربات: ':'🧑 تو: ')+text;
- messages.appendChild(d);messages.scrollTop=messages.scrollHeight;
-}
-function reply(text){addMessage('bot',text);speak(text)}
-function sendMessage(){
- const text=input.value.trim();if(!text)return;
- input.value='';addMessage('user',text);
- const t=text.toLowerCase();let answer='';
- if(t.includes('سلام')||t.includes('درود'))answer='سلام '+userName+'! 😎 چه خبر؟';
- else if(t.includes('اسمت'))answer='من ALI BOT X-1 ULTRA هستم! 🤖';
- else if(t.includes('حالت چطوره')||t.includes('خوبی'))answer='من آماده‌ام و منتظر دستورات خفنت هستم! ⚡';
- else if(t.includes('دوست'))answer='من اینجام تا کمکت کنم و باهات سرگرم بشم! 💙';
- else if(t.includes('ممنون')||t.includes('مرسی'))answer='قربونت! همیشه آماده‌ام 😁';
- else if(t.includes('خداحافظ')||t.includes('فعلا'))answer='فعلاً '+userName+'! دوباره بیا! 👋';
- else if(t.includes('ساعت'))answer='ساعت دستگاهت: '+new Date().toLocaleTimeString('fa-IR');
- else if(t.includes('جوک'))answer='چرا کامپیوتر سرما خورد؟ چون پنجره‌هاش باز بود! 😂';
- else answer='جالبه '+userName+'! 🤔 هنوز جواب همه سؤال‌ها رو بلد نیستم. می‌تونی از دکمه‌های بازی و امکانات سریع استفاده کنی.';
- reply(answer);
-}
-function toggleVoice(){
- voiceOn=!voiceOn;
- document.getElementById('voiceBtn').textContent=voiceOn?'🔊 صدای ربات: روشن':'🔇 صدای ربات: خاموش';
- if(!voiceOn&&'speechSynthesis'in window)speechSynthesis.cancel();
-}
-function speak(text){
- if(!voiceOn||!('speechSynthesis'in window))return;
- speechSynthesis.cancel();
- const u=new SpeechSynthesisUtterance(text);u.lang='fa-IR';u.rate=.9;u.pitch=.8;
- const voices=speechSynthesis.getVoices();
- const fa=voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith('fa'));
- if(fa)u.voice=fa;
- speechSynthesis.speak(u);
-}
-function startMic(){
- const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
- if(!SR){statusEl.textContent='مرورگر این قابلیت را پشتیبانی نمی‌کند. از Chrome استفاده کن.';return}
- const rec=new SR();rec.lang='fa-IR';rec.interimResults=false;
- statusEl.textContent='🎙️ گوش می‌دم...';
- rec.onresult=e=>{input.value=e.results[0][0].transcript;statusEl.textContent='صدات دریافت شد!';sendMessage()};
- rec.onerror=()=>statusEl.textContent='میکروفون فعال نشد؛ اجازه دسترسی را بررسی کن.';
- rec.onend=()=>{if(statusEl.textContent==='🎙️ گوش می‌دم...')statusEl.textContent='آماده‌ام!'};
- rec.start();
-}
-function rps(){
- document.getElementById('guessArea').style.display='none';
- const choices=['سنگ','کاغذ','قیچی'];const user=prompt('سنگ، کاغذ یا قیچی؟');
- if(!user)return;
- const u=user.trim();if(!choices.includes(u)){document.getElementById('game').textContent='لطفاً دقیقاً بنویس: سنگ، کاغذ یا قیچی.';return}
- const b=choices[Math.floor(Math.random()*3)];
- let result=u===b?'مساوی شدین!':((u==='سنگ'&&b==='قیچی')||(u==='کاغذ'&&b==='سنگ')||(u==='قیچی'&&b==='کاغذ'))?'تو بردی! 🏆':'این دور من بردم! 😁';
- document.getElementById('game').textContent='تو: '+u+' | ربات: '+b+' — '+result;speak(result);
-}
-function guessGame(){
- secretNumber=Math.floor(Math.random()*20)+1;
- document.getElementById('guessArea').style.display='block';
- document.getElementById('game').textContent='یک عدد بین ۱ تا ۲۰ انتخاب کردم. حدس بزن!';
- document.getElementById('guessInput').value='';
-}
-function checkGuess(){
- const n=Number(document.getElementById('guessInput').value);
- if(!n||n<1||n>20){document.getElementById('game').textContent='عدد باید بین ۱ تا ۲۰ باشه.';return}
- if(n===secretNumber){document.getElementById('game').textContent='آفرین '+userName+'! درست حدس زدی! 🎉';speak('آفرین '+userName+'! درست حدس زدی');document.getElementById('guessArea').style.display='none'}
- else document.getElementById('game').textContent=n<secretNumber?'عدد من بزرگ‌تره!':'عدد من کوچک‌تره!';
-}
-const riddles=[
- {q:'چی دندون داره ولی غذا نمی‌خوره؟',a:'شانه'},
- {q:'چی هرچی ازش برداری بزرگ‌تر می‌شه؟',a:'چاله'},
- {q:'چی پا نداره ولی حرکت می‌کنه؟',a:'زمان'}
+let playerName = localStorage.getItem('legendName') || 'علیرضا';
+let voiceEnabled = true;
+let board = Array(9).fill('');
+let gameOver = false;
+let playerTurn = true;
+let score = Number(localStorage.getItem('legendScore')) || 0;
+let wins = Number(localStorage.getItem('legendWins')) || 0;
+let record = Number(localStorage.getItem('legendRecord')) || 0;
+
+const winningLines = [
+  [0,1,2], [3,4,5], [6,7,8],
+  [0,3,6], [1,4,7], [2,5,8],
+  [0,4,8], [2,4,6]
 ];
-function riddle(){
- document.getElementById('guessArea').style.display='none';
- const r=riddles[Math.floor(Math.random()*riddles.length)];
- const a=prompt(r.q);
- if(a===null)return;
- const correct=a.trim().toLowerCase()===r.a;
- const result=correct?'آفرین! جواب درست بود 🎉':'جواب چیستان «'+r.a+'» بود!';
- document.getElementById('game').textContent=r.q+' — '+result;speak(result);
+
+function updateStats() {
+  $('score').textContent = score;
+  $('wins').textContent = wins;
+  $('record').textContent = record;
+
+  localStorage.setItem('legendScore', score);
+  localStorage.setItem('legendWins', wins);
+  localStorage.setItem('legendRecord', record);
 }
-function tellJoke(){reply('چرا ربات به مدرسه رفت؟ چون می‌خواست باهوش‌تر بشه! 😂')}
-function showTime(){reply('ساعت دستگاهت: '+new Date().toLocaleTimeString('fa-IR'))}
-function help(){reply('پیام بنویس و ارسال کن، برای صحبت از میکروفون استفاده کن و از بخش بازی‌ها هم لذت ببر! 🎮')}
-function clearChat(){messages.innerHTML='';addMessage('bot','چت پاک شد '+userName+'! آماده‌ام.')}
-</script></body>
+
+function saveName() {
+  const n = $('nameInput').value.trim();
+
+  if (!n) {
+    alert('اول اسمت رو بنویس!');
+    return;
+  }
+
+  playerName = n;
+  localStorage.setItem('legendName', n);
+  updateWelcome();
+
+  botReply('خوش اومدی ' + playerName + '! 💙 آماده‌ای بترکونیم؟');
+}
+
+function updateWelcome() {
+  $('welcome').textContent = 'سلام ' + playerName + '! 👋';
+}
+
+function addMessage(type, text) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + type;
+
+  const prefix = type === 'bot' ? '🤖 ربات: ' : '🧑 تو: ';
+  div.textContent = prefix + text;
+
+  $('messages').appendChild(div);
+  $('messages').scrollTop = $('messages').scrollHeight;
+}
+
+function botReply(text) {
+  const robot = $('robot');
+  const status = $('robotStatus');
+
+  robot.classList.add('talk');
+  status.textContent = '⚡ در حال پاسخ‌گویی...';
+
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+  div.textContent = '🤖 ربات: ';
+  $('messages').appendChild(div);
+
+  let i = 0;
+
+  const timer = setInterval(() => {
+    div.textContent = '🤖 ربات: ' + text.slice(0, ++i);
+    $('messages').scrollTop = $('messages').scrollHeight;
+
+    if (i >= text.length) {
+      clearInterval(timer);
+      robot.classList.remove('talk');
+      status.textContent = 'سیستم آماده است! ⚡';
+      speak(text);
+    }
+  }, 18);
+}
+
+function sendMessage() {
+  const input = $('userInput');
+  const text = input.value.trim();
+
+  if (!text) return;
+
+  input.value = '';
+  addMessage('user', text);
+
+  const t = text.toLowerCase();
+  let answer;
+
+  if (t.includes('سلام') || t.includes('درود')) {
+    answer = 'سلام ' + playerName + '! 😎 چه خبر؟';
+  } else if (t.includes('اسمت')) {
+    answer = 'من ALI BOT X-1 LEGEND هستم! 🤖';
+  } else if (t.includes('خوبی') || t.includes('حالت چطوره')) {
+    answer = 'من عالی‌ام و آماده‌ام باهات بازی کنم! ⚡';
+  } else if (t.includes('ساعت')) {
+    answer = 'ساعت دستگاهت: ' +
+      new Date().toLocaleTimeString('fa-IR');
+  } else if (t.includes('جوک')) {
+    answer = 'چرا کامپیوتر به دکتر رفت؟ چون ویروسی شده بود! 😂';
+  } else if (t.includes('دوز')) {
+    answer = 'بیا توی بخش بازی دوز با هم رقابت کنیم! 🎮';
+  } else if (t.includes('امتیاز')) {
+    answer = 'امتیازت ' + score +
+      ' و تعداد بردهات ' + wins + ' تاست! 🏆';
+  } else if (t.includes('ممنون') || t.includes('مرسی')) {
+    answer = 'خواهش می‌کنم ' + playerName + '! 💙';
+  } else if (t.includes('خداحافظ')) {
+    answer = 'فعلاً ' + playerName + '! دوباره بیا! 👋';
+  } else if (t.includes('ربات') || t.includes('هوش مصنوعی')) {
+    answer = 'من نسخه گیمینگ ALI BOT X-1 هستم! 🤖 فعلاً پاسخ‌هام از قبل برنامه‌ریزی شدن.';
+  } else {
+    answer = 'جالبه ' + playerName +
+      '! 😎 هنوز جواب این سؤال رو توی برنامه ندارم. می‌تونی از بازی‌ها و امکانات سایتم استفاده کنی!';
+  }
+
+  botReply(answer);
+}
+
+function clearChat() {
+  $('messages').innerHTML = '';
+  addMessage('bot', 'چت پاک شد! هر وقت خواستی دوباره صحبت کنیم. 💙');
+}
+
+function toggleVoice() {
+  voiceEnabled = !voiceEnabled;
+
+  $('voiceButton').textContent =
+    voiceEnabled ? '🔊 صدا روشن' : '🔇 صدا خاموش';
+
+  if (!voiceEnabled && 'speechSynthesis' in window) {
+    speechSynthesis.cancel();
+  }
+}
+
+function speak(text) {
+  if (!voiceEnabled || !('speechSynthesis' in window)) return;
+
+  speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'fa-IR';
+  utterance.rate = 0.9;
+  utterance.pitch = 0.8;
+
+  const voices = speechSynthesis.getVoices();
+  const voice = voices.find(v =>
+    v.lang && v.lang.toLowerCase().startsWith('fa')
+  );
+
+  if (voice) utterance.voice = voice;
+
+  speechSynthesis.speak(utterance);
+}
+
+function startMic() {
+  const Recognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if (!Recognition) {
+    $('voiceStatus').textContent =
+      'مرورگر شما تشخیص گفتار را پشتیبانی نمی‌کند.';
+    return;
+  }
+
+  const recognition = new Recognition();
+  recognition.lang = 'fa-IR';
+  recognition.interimResults = false;
+
+  $('voiceStatus').textContent = '🎤 گوش می‌دم...';
+
+  recognition.onresult = event => {
+    $('userInput').value =
+      event.results[0][0].transcript;
+
+    $('voiceStatus').textContent = 'صدات دریافت شد!';
+    sendMessage();
+  };
+
+  recognition.onerror = () => {
+    $('voiceStatus').textContent =
+      'میکروفون فعال نشد؛ اجازه دسترسی را بررسی کن.';
+  };
+
+  recognition.onend = () => {
+    if ($('voiceStatus').textContent === '🎤 گوش می‌دم...') {
+      $('voiceStatus').textContent = 'آماده‌ام!';
+    }
+  };
+
+  recognition.start();
+}
+
+/* بازی دوز */
+
+function newGame() {
+  board = Array(9).fill('');
+  gameOver = false;
+  playerTurn = true;
+
+  $('gameStatus').textContent = 'نوبت توئه! ❌';
+  renderBoard();
+}
+
+function renderBoard() {
+  const boardElement = $('gameBoard');
+  boardElement.innerHTML = '';
+
+  board.forEach((value, index) => {
+    const button = document.createElement('button');
+
+    button.className = 'cell';
+    button.textContent = value;
+    button.setAttribute('aria-label', 'خانه ' + (index + 1));
+    button.onclick = () => playerMove(index);
+
+    boardElement.appendChild(button);
+  });
+}
+
+function checkWinner(b, mark) {
+  return winningLines.some(line =>
+    line.every(index => b[index] === mark)
+  );
+}
+
+function playerMove(index) {
+  if (gameOver || !playerTurn || board[index]) return;
+
+  board[index] = '❌';
+  renderBoard();
+
+  if (checkWinner(board, '❌')) {
+    finishGame('تو بردی! آفرین ' + playerName + '! 🏆', 'win');
+    return;
+  }
+
+  if (board.every(Boolean)) {
+    finishGame('بازی مساوی شد! 🤝', 'draw');
+    return;
+  }
+
+  playerTurn = false;
+  $('gameStatus').textContent = 'ربات داره فکر می‌کنه... 🤖';
+
+  setTimeout(botMove, 450);
+}
+
+function botMove() {
+  if (gameOver) return;
+
+  let move = findWinningMove('⭕');
+
+  if (move === -1) move = findWinningMove('❌');
+
+  if (move === -1 && !board[4]) move = 4;
+
+  if (move === -1) {
+    const corners = [0, 2, 6, 8].filter(i => !board[i]);
+
+    if (corners.length) {
+      move = corners[Math.floor(Math.random() * corners.length)];
+    }
+  }
+
+  if (move === -1) {
+    const empty = board
+      .map((value, index) => value ? -1 : index)
+      .filter(index => index !== -1);
+
+    if (empty.length) {
+      move = empty[Math.floor(Math.random() * empty.length)];
+    }
+  }
+
+  if (move === -1) return;
+
+  board[move] = '⭕';
+  renderBoard();
+
+  if (checkWinner(board, '⭕')) {
+    finishGame('این دور ربات برد! 😎 دوباره امتحان کن.', 'loss');
+    return;
+  }
+
+  if (board.every(Boolean)) {
+    finishGame('بازی مساوی شد! 🤝', 'draw');
+    return;
+  }
+
+  playerTurn = true;
+  $('gameStatus').textContent = 'نوبت توئه! ❌';
+}
+
+function findWinningMove(mark) {
+  for (let i = 0; i < board.length; i++) {
+    if (board[i]) continue;
+
+    board[i] = mark;
+    const wins = checkWinner(board, mark);
+    board[i] = '';
+
+    if (wins) return i;
+  }
+
+  return -1;
+}
+
+function finishGame(message, result) {
+  gameOver = true;
+  playerTurn = false;
+
+  $('gameStatus').textContent = message;
+
+  if (result === 'win') {
+    score += 10;
+    wins += 1;
+
+    if (score > record) record = score;
+
+    updateStats();
+  }
+
+  if (result === 'draw') {
+    score += 2;
+
+    if (score > record) record = score;
+
+    updateStats();
+  }
+
+  speak(message);
+}
+
+/* انتخاب تم */
+
+const themes = {
+  blue: {
+    bg: '#050816',
+    card: '#0b1429',
+    accent: '#00d9ff',
+    text: '#effaff',
+    muted: '#94b6d2',
+    border: '#17496b'
+  },
+  purple: {
+    bg: '#100820',
+    card: '#1a1030',
+    accent: '#c77dff',
+    text: '#fff0ff',
+    muted: '#d0b3e8',
+    border: '#59327a'
+  },
+  red: {
+    bg: '#190808',
+    card: '#2b1010',
+    accent: '#ff5252',
+    text: '#fff0f0',
+    muted: '#e0aaaa',
+    border: '#793333'
+  },
+  green: {
+    bg: '#03130b',
+    card: '#092319',
+    accent: '#37ff9b',
+    text: '#eafff2',
+    muted: '#9bd6b8',
+    border: '#20583d'
+  }
+};
+
+function setTheme(name) {
+  const theme = themes[name];
+
+  if (!theme) return;
+
+  Object.entries(theme).forEach(([key, value]) => {
+    document.documentElement.style.setProperty(
+      '--' + key,
+      value
+    );
+  });
+
+  localStorage.setItem('legendTheme', name);
+}
+
+function tellJoke() {
+  const jokes = [
+    'چرا کامپیوتر سرما خورد؟ چون پنجره‌هاش باز بود! 😂',
+    'ربات به دوستش گفت: من امروز خیلی پردازش دارم! 🤖',
+    'چرا کتاب ریاضی ناراحت بود؟ چون مسئله زیاد داشت! 😁'
+  ];
+
+  botReply(jokes[Math.floor(Math.random() * jokes.length)]);
+}
+
+function showTime() {
+  botReply(
+    'ساعت دستگاهت: ' +
+    new Date().toLocaleTimeString('fa-IR')
+  );
+}
+
+function showRiddle() {
+  const riddles = [
+    { q: 'چی دندون داره ولی غذا نمی‌خوره؟', a: 'شانه' },
+    { q: 'چی هرچی ازش برداری بزرگ‌تر می‌شه؟', a: 'چاله' },
+    { q: 'چی پا نداره ولی حرکت می‌کنه؟', a: 'زمان' }
+  ];
+
+  const riddle =
+    riddles[Math.floor(Math.random() * riddles.length)];
+
+  const answer = prompt(riddle.q);
+
+  if (answer === null) return;
+
+  if (answer.trim() === riddle.a) {
+    score += 5;
+
+    if (score > record) record = score;
+
+    updateStats();
+
+    botReply('آفرین! جواب درست بود! 🎉 پنج امتیاز گرفتی!');
+  } else {
+    botReply('جواب درست «' + riddle.a + '» بود! دفعه بعد موفق می‌شی. 💙');
+  }
+}
+
+function showHelp() {
+  botReply(
+    'به ALI BOT X-1 خوش اومدی! 🤖 ' +
+    'می‌تونی با ربات چت کنی، بازی دوز انجام بدی، ' +
+    'تم رو عوض کنی و چیستان حل کنی. برای برد در دوز ۱۰ امتیاز می‌گیری!'
+  );
+}
+
+/* راه‌اندازی اولیه */
+
+$('nameInput').value =
+  localStorage.getItem('legendName') || '';
+
+updateWelcome();
+updateStats();
+newGame();
+
+const savedTheme = localStorage.getItem('legendTheme');
+
+if (savedTheme && themes[savedTheme]) {
+  setTheme(savedTheme);
+}
+
+addMessage(
+  'bot',
+  'سلام ' + playerName +
+  '! به ALI BOT X-1 LEGEND خوش اومدی! 💙🤖'
+);
+</script>
+
+</body>
 </html>
