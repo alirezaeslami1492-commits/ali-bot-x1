@@ -1,623 +1,180 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<!DOCTYPE html><html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#050914">
-<title>ALI BOT X-1</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALI BOT X-1 ULTRA</title>
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  background:radial-gradient(ellipse at top,#0b2340,#050914 65%);
-  color:#eaf6ff;
-  font-family:Tahoma,Arial,sans-serif;
-  min-height:100vh;
-}
-header{
-  text-align:center;
-  padding:24px 12px;
-  background:#081629;
-  border-bottom:2px solid #00c8ff;
-  box-shadow:0 0 25px #008cff33;
-}
-header h1{
-  color:#00c8ff;
-  margin:0;
-  text-shadow:0 0 15px #008cff;
-}
-header p{color:#a5bfd9}
-.online{color:#42ffad;font-size:13px}
-.container{max-width:760px;margin:18px auto;padding:12px}
-.clock{text-align:center;color:#00c8ff;font-size:22px;padding:12px}
-.profile{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  flex-wrap:wrap;
-  background:#0a1425;
-  border:1px solid #16436a;
-  border-radius:15px;
-  padding:12px;
-  margin-bottom:12px;
-}
-.profile strong{color:#00c8ff}
-.panel{
-  background:#0a1425;
-  border:1px solid #16436a;
-  border-radius:18px;
-  padding:14px;
-  box-shadow:0 0 25px #007bff15;
-}
-#chat{
-  height:350px;
-  overflow-y:auto;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  padding:5px;
-  margin-bottom:15px;
-}
-.message{
-  max-width:92%;
-  padding:11px 13px;
-  border-radius:12px;
-  white-space:pre-wrap;
-  overflow-wrap:anywhere;
-  line-height:1.9;
-}
-.bot{
-  align-self:flex-start;
-  background:#10243b;
-  border-right:3px solid #00bfff;
-}
-.user{
-  align-self:flex-end;
-  background:#073b66;
-  border-right:3px solid #008cff;
-}
-.copy{
-  display:block;
-  font-size:11px;
-  padding:5px 8px;
-  margin-top:7px;
-  background:#183c5d;
-}
-.row{display:flex;gap:8px}
-input{
-  width:100%;
-  min-width:0;
-  background:#050b16;
-  color:white;
-  border:1px solid #17639c;
-  border-radius:10px;
-  padding:13px;
-  font-size:15px;
-  outline:none;
-}
-input:focus{border-color:#00c8ff}
-button{
-  background:#008cff;
-  color:white;
-  border:none;
-  border-radius:10px;
-  padding:11px 13px;
-  font-weight:bold;
-  cursor:pointer;
-  font-family:inherit;
-}
-button:active{transform:scale(.98)}
-.send{white-space:nowrap}
-.tools{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:9px;
-  margin-top:13px;
-}
-.tools button{
-  background:#10243b;
-  border:1px solid #087dbb;
-}
-.tools button:hover{background:#07538a}
-.hint{
-  color:#91acc8;
-  font-size:12px;
-  line-height:1.8;
-  margin-top:12px;
-}
-footer{
-  text-align:center;
-  color:#7895b3;
-  padding:20px;
-  font-size:12px;
-}
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:10;
-  background:#020611dd;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-}
-.modal[hidden]{display:none}
-.modal-card{
-  width:100%;
-  max-width:420px;
-  background:#0a1425;
-  border:1px solid #00c8ff;
-  border-radius:20px;
-  padding:22px;
-  box-shadow:0 0 35px #008cff44;
-}
-.modal-card h2{color:#00c8ff;margin-top:0}
-.modal-card p{color:#a5bfd9;line-height:1.8}
-.modal-card input{margin:8px 0 12px}
-.modal-actions{display:flex;gap:8px}
-.modal-actions button{flex:1}
-.secondary{background:#18304b;border:1px solid #285a7e}
-@media(max-width:420px){
-  .container{padding:9px}
-  .panel{padding:10px}
-  .tools{gap:7px}
-  .tools button{padding:11px 5px;font-size:12px}
-  .send{padding:10px;font-size:13px}
-}
+body{margin:0;background:#050816;color:#eaf7ff;font-family:Tahoma,Arial,sans-serif;min-height:100vh}
+header{text-align:center;padding:24px 12px;background:linear-gradient(135deg,#071b3d,#080b18);border-bottom:2px solid #00c8ff;box-shadow:0 0 24px #00aaff55}
+.logo{font-size:27px;font-weight:bold;color:#36dcff;text-shadow:0 0 15px #00bfff}
+.subtitle{color:#a7c9e9;margin-top:8px;font-size:13px}
+.container{width:min(950px,94%);margin:20px auto}
+.panel{background:#0b1327;border:1px solid #17476b;border-radius:18px;padding:16px;margin-bottom:16px;box-shadow:0 0 20px #0077ff12}
+h2{font-size:17px;color:#41dfff;margin-top:0}
+button{border:1px solid #12bff5;background:linear-gradient(135deg,#07518a,#06315c);color:white;padding:11px 14px;border-radius:11px;font-weight:bold;cursor:pointer;margin:4px}
+button:active{transform:scale(.97)}
+input{width:100%;padding:13px;border-radius:10px;border:1px solid #1b75a5;background:#050b19;color:white;font-size:15px;outline:none;margin:6px 0}
+#messages{height:290px;overflow-y:auto;background:#050a17;border-radius:12px;padding:12px;border:1px solid #163957}
+.msg{padding:10px 12px;border-radius:12px;margin:8px 0;max-width:92%;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8}
+.bot{background:#102747;border-right:3px solid #00d4ff}
+.user{background:#123c37;border-right:3px solid #29e6a1;margin-right:auto}
+.row{display:flex;gap:6px;align-items:center}
+.row input{flex:1;min-width:0}
+.small{font-size:12px;color:#91afcb;line-height:1.8}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:8px}
+#status{color:#5de4ff;font-size:12px}
+footer{text-align:center;color:#6387a8;padding:20px;font-size:12px}
 </style>
 </head>
-
 <body>
-
 <header>
-  <h1>⚡ ALI BOT X-1 ⚡</h1>
-  <p>دستیار دیجیتال اختصاصی تو</p>
-  <div class="online">● سیستم آماده است</div>
-</header>
-
-<div class="container">
-
-  <div class="clock" id="clock">۰۰:۰۰:۰۰</div>
-
-  <section class="profile">
-    <div>👤 کاربر: <strong id="displayName">مهمان</strong></div>
-    <button type="button" id="changeName">✏️ تغییر اسم</button>
-  </section>
-
-  <main class="panel">
-
-    <div id="chat" aria-live="polite">
-      <div class="message bot">سلام قهرمان! 🤖💙
-
-من ALI BOT X-1 هستم!
-
-اسمت رو وارد کن تا با اسم خودت صدات کنم.</div>
-    </div>
-
+  <div class="logo">⚡ ALI BOT X-1 ULTRA ⚡</div>
+  <div class="subtitle">ربات گیمینگ اختصاصی علیرضا | نسخه ارتقایافته</div>
+</header><div class="container">
+  <section class="panel">
+    <h2>🤖 مشخصات ربات</h2>
+    <div id="welcome">سلام! به ALI BOT X-1 خوش اومدی!</div>
     <div class="row">
-      <input id="input" placeholder="پیامت رو بنویس..." autocomplete="off">
-      <button class="send" id="send" type="button">ارسال 🚀</button>
+      <input id="name" placeholder="اسمت رو وارد کن">
+      <button onclick="saveName()">ثبت اسم</button>
     </div>
-
-    <div class="tools">
-      <button onclick="quick('سلام')">👋 سلام</button>
-      <button onclick="quick('جوک بگو')">😂 جوک</button>
-      <button onclick="quick('بازی')">🎯 حدس عدد</button>
-      <button onclick="quick('راهنما')">📚 راهنما</button>
-      <button onclick="quick('ساعت')">🕒 ساعت</button>
-      <button onclick="quick('حالت چطوره')">🤖 وضعیت بات</button>
-      <button onclick="changeName()">👤 تغییر اسم</button>
-      <button onclick="quick('حساب ۱۲+۸')">🧮 ماشین‌حساب</button>
+    <div class="small">اسمت روی همین دستگاه ذخیره می‌شه. برای تغییرش، اسم جدید وارد کن.</div>
+  </section>  <section class="panel">
+    <h2>💬 گفت‌وگو با ربات</h2>
+    <div id="messages" aria-live="polite"></div>
+    <div class="row">
+      <input id="userInput" placeholder="پیامت رو بنویس..." onkeydown="if(event.key==='Enter')sendMessage()">
+      <button onclick="sendMessage()">ارسال</button>
+    </div>
+    <div class="grid">
+      <button onclick="startMic()">🎤 صحبت با میکروفون</button>
+      <button onclick="toggleVoice()" id="voiceBtn">🔊 صدای ربات: روشن</button>
       <button onclick="clearChat()">🧹 پاک کردن چت</button>
-      <button onclick="quick('امکانات')">✨ امکانات بات</button>
     </div>
-
-    <p class="hint">
-      اسم در همین مرورگر ذخیره می‌شود.
-      این نسخه برای سرگرمی ساخته شده و به هوش مصنوعی آنلاین متصل نیست.
-    </p>
-
-  </main>
+    <div id="status">آماده‌ام!</div>
+    <p class="small">برای میکروفون، ممکنه لازم باشه اجازه بدی و سایت در مرورگر پشتیبانی‌شده باز بشه. صدای مردونه به صداهای گوشی بستگی داره.</p>
+  </section>  <section class="panel">
+    <h2>🎮 بازی‌ها</h2>
+    <div class="grid">
+      <button onclick="rps()">✊ سنگ، کاغذ، قیچی</button>
+      <button onclick="guessGame()">🔢 حدس عدد</button>
+      <button onclick="riddle()">🧠 چیستان</button>
+    </div>
+    <div id="game" class="small">یک بازی انتخاب کن!</div>
+    <div id="guessArea" style="display:none">
+      <input id="guessInput" type="number" min="1" max="20" placeholder="عدد بین ۱ تا ۲۰">
+      <button onclick="checkGuess()">بررسی حدس</button>
+    </div>
+  </section>  <section class="panel">
+    <h2>✨ امکانات سریع</h2>
+    <div class="grid">
+      <button onclick="tellJoke()">😂 جوک بگو</button>
+      <button onclick="showTime()">🕒 ساعت</button>
+      <button onclick="help()">❔ راهنما</button>
+    </div>
+  </section>
 </div>
+<footer>ALI BOT X-1 ULTRA · ساخته‌شده با 💙</footer><script>
+let userName=localStorage.getItem('aliBotName')||'دوست من';
+let voiceOn=true, secretNumber=0;
+const messages=document.getElementById('messages');
+const input=document.getElementById('userInput');
+const statusEl=document.getElementById('status');
 
-<footer>ALI BOT X-1 • ساخته‌شده برای سرگرمی 💙</footer>
+document.getElementById('name').value=localStorage.getItem('aliBotName')||'';
+updateWelcome();
+addMessage('bot','سلام '+userName+'! 🤖 من ALI BOT X-1 هستم. می‌تونی باهام چت کنی یا بازی کنی.');
 
-<div class="modal" id="nameModal" role="dialog"
-aria-modal="true" aria-labelledby="modalTitle" hidden>
-
-  <div class="modal-card">
-    <h2 id="modalTitle">👋 سلام، خوش اومدی!</h2>
-    <p>دوست داری بات تو رو با چه اسمی صدا کنه؟</p>
-
-    <form id="nameForm">
-      <input id="nameInput" maxlength="30"
-      placeholder="مثلاً علیرضا" required>
-
-      <div class="modal-actions">
-        <button type="submit">ذخیره اسم 💙</button>
-        <button type="button" class="secondary" id="skipName">
-          فعلاً نه
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<script>
-const chat = document.getElementById("chat");
-const input = document.getElementById("input");
-const nameModal = document.getElementById("nameModal");
-const nameInput = document.getElementById("nameInput");
-
-let myName = "";
-let gameNumber = null;
-
-try {
-  myName = localStorage.getItem("aliBotName") || "";
-} catch(e) {}
-
-function safeName(value){
-  return String(value || "")
-    .replace(/[<>]/g,"")
-    .trim()
-    .slice(0,30);
+function saveName(){
+ const n=document.getElementById('name').value.trim();
+ if(!n){alert('اول اسمت رو بنویس!');return}
+ userName=n;localStorage.setItem('aliBotName',n);updateWelcome();
+ addMessage('bot','خوش اومدی '+userName+'! 💙');speak('خوش اومدی '+userName);
 }
-
-function showName(){
-  document.getElementById("displayName").textContent =
-    myName || "مهمان";
+function updateWelcome(){document.getElementById('welcome').textContent='سلام '+userName+'! آماده‌ای؟'}
+function addMessage(type,text){
+ const d=document.createElement('div');d.className='msg '+type;d.textContent=(type==='bot'?'🤖 ربات: ':'🧑 تو: ')+text;
+ messages.appendChild(d);messages.scrollTop=messages.scrollHeight;
 }
-
-function greetName(){
-  return myName ? myName + " جان" : "قهرمان";
-}
-
-function openNameModal(){
-  nameInput.value = myName;
-  nameModal.hidden = false;
-  setTimeout(() => nameInput.focus(),100);
-}
-
-function closeNameModal(){
-  nameModal.hidden = true;
-  input.focus();
-}
-
-function changeName(){
-  openNameModal();
-}
-
-document.getElementById("changeName")
-  .addEventListener("click",changeName);
-
-document.getElementById("nameForm")
-  .addEventListener("submit",function(e){
-    e.preventDefault();
-
-    const newName = safeName(nameInput.value);
-    if(!newName) return;
-
-    myName = newName;
-
-    try {
-      localStorage.setItem("aliBotName",myName);
-    } catch(e) {}
-
-    showName();
-    closeNameModal();
-
-    addMessage(
-      "از این به بعد با اسم «" + myName +
-      "» صدات می‌کنم! 💙",
-      "bot"
-    );
-  });
-
-document.getElementById("skipName")
-  .addEventListener("click",closeNameModal);
-
-function addMessage(text,type){
-  const div = document.createElement("div");
-  div.className = "message " + type;
-  div.textContent = text;
-
-  if(type === "bot"){
-    const copy = document.createElement("button");
-    copy.type = "button";
-    copy.className = "copy";
-    copy.textContent = "📋 کپی پاسخ";
-
-    copy.addEventListener("click",async function(){
-      try {
-        await navigator.clipboard.writeText(text);
-        copy.textContent = "کپی شد ✓";
-      } catch(e) {
-        const area = document.createElement("textarea");
-        area.value = text;
-        document.body.appendChild(area);
-        area.select();
-
-        try {
-          document.execCommand("copy");
-          copy.textContent = "کپی شد ✓";
-        } catch(err) {
-          copy.textContent = "کپی نشد";
-        }
-
-        area.remove();
-      }
-
-      setTimeout(() => {
-        copy.textContent = "📋 کپی پاسخ";
-      },1500);
-    });
-
-    div.appendChild(copy);
-  }
-
-  chat.appendChild(div);
-  chat.scrollTop = chat.scrollHeight;
-}
-
-function quick(text){
-  input.value = text;
-  sendMessage();
-}
-
-function clearChat(){
-  chat.replaceChildren();
-
-  addMessage(
-    "گفت‌وگو پاک شد، " + greetName() +
-    "! 💙 دوباره شروع کنیم؟",
-    "bot"
-  );
-}
-
-function randomItem(list){
-  return list[Math.floor(Math.random()*list.length)];
-}
-
-function calculate(expression){
-  expression = expression
-    .replace(/[۰-۹]/g,d=>"۰۱۲۳۴۵۶۷۸۹".indexOf(d))
-    .replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d))
-    .replace(/,/g,".")
-    .replace(/[×x]/g,"*")
-    .replace(/÷/g,"/");
-
-  if(!/^[\d+\-*/().%\s]+$/.test(expression))
-    return null;
-
-  const tokens = expression.match(
-    /\d+(?:\.\d+)?|[()+\-*/%]/g
-  );
-
-  if(!tokens ||
-    tokens.join("") !== expression.replace(/\s/g,""))
-    return null;
-
-  let pos = 0;
-
-  function factor(){
-    const t = tokens[pos++];
-
-    if(t === "+") return factor();
-    if(t === "-") return -factor();
-
-    if(t === "("){
-      const v = sum();
-      if(tokens[pos++] !== ")") throw Error();
-      return v;
-    }
-
-    if(!t || !/^\d+(?:\.\d+)?$/.test(t))
-      throw Error();
-
-    return Number(t);
-  }
-
-  function term(){
-    let v = factor();
-
-    while(["*","/","%"].includes(tokens[pos])){
-      const op = tokens[pos++];
-      const b = factor();
-
-      if((op === "/" || op === "%") && b === 0)
-        throw Error();
-
-      if(op === "*") v *= b;
-      if(op === "/") v /= b;
-      if(op === "%") v %= b;
-    }
-
-    return v;
-  }
-
-  function sum(){
-    let v = term();
-
-    while(tokens[pos] === "+" || tokens[pos] === "-"){
-      const op = tokens[pos++];
-      const b = term();
-      v = op === "+" ? v+b : v-b;
-    }
-
-    return v;
-  }
-
-  try {
-    const result = sum();
-
-    if(pos !== tokens.length || !Number.isFinite(result))
-      return null;
-
-    return Number(result.toFixed(8)).toString();
-  } catch(e) {
-    return null;
-  }
-}
-
+function reply(text){addMessage('bot',text);speak(text)}
 function sendMessage(){
-  const original = input.value.trim();
-
-  if(!original) return;
-
-  addMessage(original,"user");
-  input.value = "";
-
-  const msg = original
-    .toLowerCase()
-    .replace(/[؟?!،,]/g," ")
-    .replace(/\s+/g," ")
-    .trim();
-
-  const who = greetName();
-  let reply = "";
-
-  if(gameNumber !== null && /^\d+$/.test(msg)){
-    const n = Number(msg);
-
-    if(n < 1 || n > 10){
-      reply = "یک عدد بین ۱ تا ۱۰ وارد کن! 🎯";
-    } else if(n === gameNumber){
-      reply = "آفرین " + who +
-        "! درست حدس زدی! 🏆";
-      gameNumber = null;
-    } else {
-      reply = (n < gameNumber
-        ? "عدد من بزرگ‌تره"
-        : "عدد من کوچک‌تره") +
-        "، " + who + "! دوباره امتحان کن 😎";
-    }
-  }
-
-  else if(/^(اسم من|اسمم)\s*/.test(msg)){
-    let candidate = original
-      .replace(/^(اسم من|اسمم)\s*/,"")
-      .replace(/\s*(است|هستم|هست)$/,"")
-      .trim();
-
-    candidate = safeName(candidate);
-
-    if(candidate){
-      myName = candidate;
-
-      try {
-        localStorage.setItem("aliBotName",myName);
-      } catch(e) {}
-
-      showName();
-
-      reply = "چه خوب! از این به بعد «" +
-        myName + "» صدات می‌کنم! 💙";
-    } else {
-      reply = "برای تغییر اسمت، دکمه تغییر اسم رو بزن.";
-    }
-  }
-
-  else if(msg.includes("اسم تو") || msg.includes("اسمت چیه")){
-    reply = "من ALI BOT X-1 هستم! 🤖⚡";
-  }
-
-  else if(msg === "سلام" || msg.startsWith("سلام ")){
-    reply = randomItem([
-      "سلام " + who + "! 😎💙",
-      "سلااام " + who + "! خوش اومدی! 🚀",
-      "سلام رفیق " + who + "! چه خبر؟ 🤖"
-    ]);
-  }
-
-  else if(msg.includes("خوبی") || msg.includes("حالت چطوره")){
-    reply = "من آماده‌ام باهات گپ بزنم، " +
-      who + "! 💙 تو چطوری؟";
-  }
-
-  else if(msg.includes("جوک")){
-    reply = randomItem([
-      "به کامپیوتر گفتن چرا سردته؟ گفت ویندوزم بازه! 😂",
-      "ربات رفت مدرسه؛ نمره‌اش شد صفر و یک! 🤖🤣",
-      "چرا برنامه‌نویس گرسنه بود؟ چون دنبال باگ غذا می‌گشت! 😆",
-      "معلم گفت چرا دیر اومدی؟ گفت ترافیک اینترنت بود! 😂"
-    ]);
-  }
-
-  else if(msg.includes("بازی")){
-    gameNumber = Math.floor(Math.random()*10)+1;
-    reply = "🎯 " + who +
-      "، یک عدد بین ۱ تا ۱۰ انتخاب کردم! حدس بزن چنده؟";
-  }
-
-  else if(msg.includes("ساعت")){
-    reply = "ساعت الان، " + who + ": " +
-      new Date().toLocaleTimeString("fa-IR");
-  }
-
-  else if(msg.includes("راهنما") || msg.includes("امکانات")){
-    reply = "این‌ها رو امتحان کن، " + who + ":\n" +
-      "سلام\nجوک بگو\nبازی\nساعت\nاسم تو چیه\n" +
-      "حالت چطوره\nحساب ۱۲+۸*۲\n" +
-      "می‌تونی اسمت رو تغییر بدی و پاسخ‌ها رو کپی کنی. 💙";
-  }
-
-  else if(msg.includes("ممنون") || msg.includes("مرسی")){
-    reply = "خواهش می‌کنم " + who + "! 💙😎";
-  }
-
-  else if(msg.includes("خداحافظ") || msg.includes("فعلا") ||
-          msg.includes("فعلاً")){
-    reply = "فعلاً " + who +
-      "! هر وقت خواستی برگرد! 🚀";
-  }
-
-  else {
-    const expression = original
-      .replace(/[۰-۹]/g,d=>"۰۱۲۳۴۵۶۷۸۹".indexOf(d))
-      .replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d))
-      .replace(/^حساب\s*/,"")
-      .replace(/[×x]/g,"*")
-      .replace(/÷/g,"/");
-
-    const result = calculate(expression);
-
-    if(result !== null && /\d/.test(expression)){
-      reply = "جواب، " + who + ": " + result + " 🧮";
-    } else {
-      reply = randomItem([
-        "جالبه " + who + "! بیشتر برام توضیح می‌دی؟ 🤔",
-        "هنوز جواب این جمله رو یاد نگرفتم، " + who + "! 🤖",
-        "این یکی رو هنوز بلد نیستم؛ «راهنما» رو امتحان کن! 💙",
-        "دارم پیشرفت می‌کنم، " + who + "! یه چیز دیگه بپرس 😎"
-      ]);
-    }
-  }
-
-  setTimeout(() => addMessage(reply,"bot"),180);
+ const text=input.value.trim();if(!text)return;
+ input.value='';addMessage('user',text);
+ const t=text.toLowerCase();let answer='';
+ if(t.includes('سلام')||t.includes('درود'))answer='سلام '+userName+'! 😎 چه خبر؟';
+ else if(t.includes('اسمت'))answer='من ALI BOT X-1 ULTRA هستم! 🤖';
+ else if(t.includes('حالت چطوره')||t.includes('خوبی'))answer='من آماده‌ام و منتظر دستورات خفنت هستم! ⚡';
+ else if(t.includes('دوست'))answer='من اینجام تا کمکت کنم و باهات سرگرم بشم! 💙';
+ else if(t.includes('ممنون')||t.includes('مرسی'))answer='قربونت! همیشه آماده‌ام 😁';
+ else if(t.includes('خداحافظ')||t.includes('فعلا'))answer='فعلاً '+userName+'! دوباره بیا! 👋';
+ else if(t.includes('ساعت'))answer='ساعت دستگاهت: '+new Date().toLocaleTimeString('fa-IR');
+ else if(t.includes('جوک'))answer='چرا کامپیوتر سرما خورد؟ چون پنجره‌هاش باز بود! 😂';
+ else answer='جالبه '+userName+'! 🤔 هنوز جواب همه سؤال‌ها رو بلد نیستم. می‌تونی از دکمه‌های بازی و امکانات سریع استفاده کنی.';
+ reply(answer);
 }
-
-document.getElementById("send")
-  .addEventListener("click",sendMessage);
-
-input.addEventListener("keydown",function(e){
-  if(e.key === "Enter") sendMessage();
-});
-
-function updateClock(){
-  document.getElementById("clock").textContent =
-    new Date().toLocaleTimeString("fa-IR");
+function toggleVoice(){
+ voiceOn=!voiceOn;
+ document.getElementById('voiceBtn').textContent=voiceOn?'🔊 صدای ربات: روشن':'🔇 صدای ربات: خاموش';
+ if(!voiceOn&&'speechSynthesis'in window)speechSynthesis.cancel();
 }
-
-updateClock();
-setInterval(updateClock,1000);
-showName();
-
-if(!myName){
-  setTimeout(openNameModal,300);
+function speak(text){
+ if(!voiceOn||!('speechSynthesis'in window))return;
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(text);u.lang='fa-IR';u.rate=.9;u.pitch=.8;
+ const voices=speechSynthesis.getVoices();
+ const fa=voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith('fa'));
+ if(fa)u.voice=fa;
+ speechSynthesis.speak(u);
 }
-</script>
-
-</body>
+function startMic(){
+ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(!SR){statusEl.textContent='مرورگر این قابلیت را پشتیبانی نمی‌کند. از Chrome استفاده کن.';return}
+ const rec=new SR();rec.lang='fa-IR';rec.interimResults=false;
+ statusEl.textContent='🎙️ گوش می‌دم...';
+ rec.onresult=e=>{input.value=e.results[0][0].transcript;statusEl.textContent='صدات دریافت شد!';sendMessage()};
+ rec.onerror=()=>statusEl.textContent='میکروفون فعال نشد؛ اجازه دسترسی را بررسی کن.';
+ rec.onend=()=>{if(statusEl.textContent==='🎙️ گوش می‌دم...')statusEl.textContent='آماده‌ام!'};
+ rec.start();
+}
+function rps(){
+ document.getElementById('guessArea').style.display='none';
+ const choices=['سنگ','کاغذ','قیچی'];const user=prompt('سنگ، کاغذ یا قیچی؟');
+ if(!user)return;
+ const u=user.trim();if(!choices.includes(u)){document.getElementById('game').textContent='لطفاً دقیقاً بنویس: سنگ، کاغذ یا قیچی.';return}
+ const b=choices[Math.floor(Math.random()*3)];
+ let result=u===b?'مساوی شدین!':((u==='سنگ'&&b==='قیچی')||(u==='کاغذ'&&b==='سنگ')||(u==='قیچی'&&b==='کاغذ'))?'تو بردی! 🏆':'این دور من بردم! 😁';
+ document.getElementById('game').textContent='تو: '+u+' | ربات: '+b+' — '+result;speak(result);
+}
+function guessGame(){
+ secretNumber=Math.floor(Math.random()*20)+1;
+ document.getElementById('guessArea').style.display='block';
+ document.getElementById('game').textContent='یک عدد بین ۱ تا ۲۰ انتخاب کردم. حدس بزن!';
+ document.getElementById('guessInput').value='';
+}
+function checkGuess(){
+ const n=Number(document.getElementById('guessInput').value);
+ if(!n||n<1||n>20){document.getElementById('game').textContent='عدد باید بین ۱ تا ۲۰ باشه.';return}
+ if(n===secretNumber){document.getElementById('game').textContent='آفرین '+userName+'! درست حدس زدی! 🎉';speak('آفرین '+userName+'! درست حدس زدی');document.getElementById('guessArea').style.display='none'}
+ else document.getElementById('game').textContent=n<secretNumber?'عدد من بزرگ‌تره!':'عدد من کوچک‌تره!';
+}
+const riddles=[
+ {q:'چی دندون داره ولی غذا نمی‌خوره؟',a:'شانه'},
+ {q:'چی هرچی ازش برداری بزرگ‌تر می‌شه؟',a:'چاله'},
+ {q:'چی پا نداره ولی حرکت می‌کنه؟',a:'زمان'}
+];
+function riddle(){
+ document.getElementById('guessArea').style.display='none';
+ const r=riddles[Math.floor(Math.random()*riddles.length)];
+ const a=prompt(r.q);
+ if(a===null)return;
+ const correct=a.trim().toLowerCase()===r.a;
+ const result=correct?'آفرین! جواب درست بود 🎉':'جواب چیستان «'+r.a+'» بود!';
+ document.getElementById('game').textContent=r.q+' — '+result;speak(result);
+}
+function tellJoke(){reply('چرا ربات به مدرسه رفت؟ چون می‌خواست باهوش‌تر بشه! 😂')}
+function showTime(){reply('ساعت دستگاهت: '+new Date().toLocaleTimeString('fa-IR'))}
+function help(){reply('پیام بنویس و ارسال کن، برای صحبت از میکروفون استفاده کن و از بخش بازی‌ها هم لذت ببر! 🎮')}
+function clearChat(){messages.innerHTML='';addMessage('bot','چت پاک شد '+userName+'! آماده‌ام.')}
+</script></body>
 </html>
